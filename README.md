@@ -1,73 +1,31 @@
-# FoodSpin
+# Family Blossoms 3D
 
-FoodSpin hiện sử dụng React web làm frontend duy nhất, kết nối với API Express trong `BE`.
+A Vietnamese 20/10 family greeting built with React, Vite, Three.js, and React Three Fiber. Choose a dedication for Mẹ or Chị dâu, rotate and zoom the procedural bouquet, reset the camera, and open a scrollable greeting card.
 
-## Cấu trúc
+## Run locally
 
-- `web`: React + TypeScript + Vite
-- `BE`: Express + Prisma API
+Requires Node.js 20+.
 
-Chi tiết database, migration an toàn và seed dữ liệu nằm trong `BE/database`.
-
-## Chạy frontend
-
-```powershell
-cd web
-Copy-Item .env.example .env
+```bash
 npm install
 npm run dev
 ```
 
-Web mặc định kết nối API tại `http://localhost:3000`. Thay đổi `VITE_API_URL` trong `web/.env` nếu backend chạy tại địa chỉ khác.
+Production build:
 
-## Build frontend
-
-```powershell
-cd web
-npm run typecheck
+```bash
 npm run build
 ```
-# FoodSpin Web
 
-## Chạy toàn bộ project bằng Docker
+## Music files
 
-Yêu cầu Docker Desktop đang chạy:
+On page load, the player attempts to start the supplied Soft Piano MP3, shared by both recipient views. Browsers may block audible autoplay; use the music button once when the on-screen prompt appears.
 
-```powershell
-docker compose up --build
-```
+1. Download a track whose license permits your intended use, and keep its license information.
+2. Put the audio file in `public/audio/`.
+3. Set that choice's `src` in `src/components/MusicPlayer.jsx` to its local path, such as `/audio/soft-piano.mp3`.
 
-Mở web tại `http://localhost:5173`. API chạy tại `http://localhost:3000`.
+The provided file is stored at `public/audio/soft-piano.mp3`. Confirm its license and keep the source/license details with the project.
 
-## Chạy web không cần database
-
-Web mặc định chạy local-first: 38 món mẫu, tài khoản, món tự thêm, yêu thích, bật/tắt vòng quay và lịch sử được lưu trong `localStorage` của trình duyệt. Chỉ cần chạy:
-
-```powershell
-docker compose -f docker-compose.local.yml up --build
-```
-
-Hoặc chạy trực tiếp trong thư mục `web`:
-
-```powershell
-npm install
-npm run dev
-```
-
-Chế độ local phù hợp demo và một trình duyệt. Mật khẩu cũng nằm trong localStorage nên không dùng cho production hoặc dữ liệu nhạy cảm. Khi cần nhiều người dùng và đồng bộ server, đặt `VITE_STORAGE_MODE=api` và dùng `docker-compose.yml` đầy đủ.
-
-Database PostgreSQL được khởi tạo tự động bằng schema và seed trong `BE/database/` ở lần chạy đầu tiên. Dữ liệu được lưu trong volume `foodspin_pgdata`.
-
-Để dừng:
-
-```powershell
-docker compose down
-```
-
-Chỉ xóa dữ liệu local khi thực sự cần:
-
-```powershell
-docker compose down -v
-```
-
-Các JWT secret trong compose chỉ dùng cho local development; production phải thay bằng secret ngẫu nhiên và cấu hình Cloudinary thật qua file `.env` hoặc secret manager.
+The bouquets are procedural 3D models, not photogrammetry or licensed GLB assets. They use different petal geometry, density, filler flowers, wrapping, ribbon, and palettes for the two recipients, but remain an artistic approximation of the supplied references.
+# Eternal_Roses_v2
